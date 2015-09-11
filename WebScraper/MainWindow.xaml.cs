@@ -32,22 +32,20 @@ namespace WebScraper
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Scrape links from wikipedia.org
 
-            // 1.
             // URL: http://en.wikipedia.org/wiki/Main_Page
             WebClient w = new WebClient();
-            //string s = w.DownloadString("http://www.basketball-reference.com/leagues/NBA_2015_ratings.html");
-            string s = w.DownloadString("http://rotoguru1.com/cgi-bin/hstats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&xavg=4&show=2&fltr=00");
+            string s = w.DownloadString("http://www.rotowire.com/daily/nba/defense-vspos.htm");
+            //string s = w.DownloadString("http://rotoguru1.com/cgi-bin/hstats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&xavg=4&show=2&fltr=00");
 
             // 2.
            List <string> xList = new List <string>();
            //string[] result;
 
-            foreach (LinkItem i in LinkFinder.Find(s, "pre"))
+            foreach (LinkItem i in LinkFinder.Find(s))
             {                
-                var result = i.ToString().Split(new[] { '\r', '\n' });
-                xList = result.ToList<string>();
+                //var result = i.ToString().Split(new[] { '\r', '\n' });
+                //xList = result.ToList<string>();
                 Debug.WriteLine(i);
             }
 
@@ -58,7 +56,7 @@ namespace WebScraper
                     string input = xList[i].Substring(0, 4);
                     if (Regex.IsMatch(input, @"^\d+$") == true)
                     {
-                        InsertData(xList[i]);
+                        //InsertData(xList[i]);
                     }
                 }    
                 else

@@ -16,13 +16,13 @@ static class LinkFinder
 {
 
 
-    public static List<LinkItem> Find(string file)
+    public static List<LinkItem> Find(string file, string tag)
     {
         List<LinkItem> list = new List<LinkItem>();
 
         // 1.
         // Find all matches in file.
-        MatchCollection m1 = Regex.Matches(file, @"(<td.*?>.*?</td>)",
+        MatchCollection m1 = Regex.Matches(file, @"(<^^^.*?>.*?</^^^>)".Replace("^^^", tag),
             RegexOptions.Singleline);
 
         // 2.
@@ -34,7 +34,7 @@ static class LinkFinder
 
             // 3.
             // Get href attribute.
-            Match m2 = Regex.Match(value, @"td=\""(.*?)\""",
+            Match m2 = Regex.Match(value, @"^^^=\""(.*?)\""".Replace("^^^", tag),
             RegexOptions.Singleline);
             if (m2.Success)
             {
@@ -43,7 +43,7 @@ static class LinkFinder
 
             // 4.
             // Remove inner tags from text.
-            string t = Regex.Replace(value, @"\s*<.*?>\s*", "",
+            string t = Regex.Replace(value, @"\s*<.*?>\s*".Replace("^^^", tag), "",
             RegexOptions.Singleline);
             i.Text = t;
 

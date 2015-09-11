@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper", "WebScraper\WebScraper.csproj", "{5E094407-8AD6-4AB2-B658-CDCCFA84DDA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraperConsole", "WebScraperConsole\WebScraperConsole.csproj", "{C8E8C293-19AA-4D64-9BE2-CFF3AE956D33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraperTeams", "WebScraperTeams\WebScraperTeams.csproj", "{AC7FD2A4-80B1-425F-B7E2-36E872010C92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E094407-8AD6-4AB2-B658-CDCCFA84DDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E094407-8AD6-4AB2-B658-CDCCFA84DDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E094407-8AD6-4AB2-B658-CDCCFA84DDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E094407-8AD6-4AB2-B658-CDCCFA84DDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E8C293-19AA-4D64-9BE2-CFF3AE956D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E8C293-19AA-4D64-9BE2-CFF3AE956D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E8C293-19AA-4D64-9BE2-CFF3AE956D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E8C293-19AA-4D64-9BE2-CFF3AE956D33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7FD2A4-80B1-425F-B7E2-36E872010C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7FD2A4-80B1-425F-B7E2-36E872010C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7FD2A4-80B1-425F-B7E2-36E872010C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7FD2A4-80B1-425F-B7E2-36E872010C92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
