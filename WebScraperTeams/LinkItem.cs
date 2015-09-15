@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-public struct LinkItem
+public class LinkItem
 {
     public string Href;
     public string Text;
