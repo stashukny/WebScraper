@@ -10,11 +10,11 @@ namespace WebScraperConsole
 {
     internal class Program
     {
+        private const string path = "http://rotoguru1.com/cgi-bin/hstats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&xavg=4&show=2&fltr=00";
+        private const string pattern = "pre";
+
         private static void Main(string[] args)
         {
-            string path = "http://rotoguru1.com/cgi-bin/hstats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&xavg=4&show=2&fltr=00";
-            string pattern = "pre";
-
             WebClient w = new WebClient();
             string s = w.DownloadString(path);
 

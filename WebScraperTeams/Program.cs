@@ -28,10 +28,10 @@ namespace WebScraperTeams
 
     internal class Program
     {
+        private const string path = "http://www.rotowire.com/daily/nba/defense-vspos.htm";
+
         private static void Main(string[] args)
         {
-            string path = "http://www.rotowire.com/daily/nba/defense-vspos.htm";
-
             WebClient w = new WebClient();
             string s = w.DownloadString(path);
 
