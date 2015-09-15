@@ -7,25 +7,6 @@ using System.Net;
 
 namespace WebScraperTeams
 {
-    //struct Teams
-    //{
-    //    public string Team;
-    //    public float VsPos;
-    //    public float SeasonAvg;
-    //    public float Last4Avg;
-    //    public float Last10Avg;
-    //    public float Pts;
-    //    public float Reb;
-    //    public float Ast;
-    //    public float Stl;
-    //    public float Blk;
-    //    public float ThreePM;
-    //    public float FG;
-    //    public float FT;
-    //    public float TO;
-
-    //}
-
     internal class Program
     {
         private const string path = "http://www.rotowire.com/daily/nba/defense-vspos.htm";
@@ -38,8 +19,6 @@ namespace WebScraperTeams
             List<string> xList = new List<string>();
 
             int counter = 0;
-            //string next;
-            //Teams t;
             string all = "";
 
             foreach (LinkItem i in LinkFinder.Find(s))
@@ -54,8 +33,6 @@ namespace WebScraperTeams
                     if (!String.IsNullOrEmpty(all))
                     {
                         Debug.WriteLine(all);
-                        //var result = all.ToString().Split(new[] { ';', '\n' });
-                        //xList = result.ToList<string>();
                         xList.Add(all);
                         all = "";
                     }
