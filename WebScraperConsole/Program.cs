@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace WebScraperConsole
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             string path = "http://rotoguru1.com/cgi-bin/hstats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&xavg=4&show=2&fltr=00";
-            string pattern = "pre";            
+            string pattern = "pre";
 
-            WebClient w = new WebClient();            
+            WebClient w = new WebClient();
             string s = w.DownloadString(path);
-            
+
             List<string> xList = new List<string>();
 
             foreach (LinkItem i in LinkFinder.Find(s, pattern))
             {
                 var result = i.ToString().Split(new[] { '\r', '\n' });
-                xList = result.ToList<string>();                
+                xList = result.ToList<string>();
             }
 
             for (int i = xList.Count - 1; i >= 0; i--)
@@ -34,8 +32,8 @@ namespace WebScraperConsole
                 {
                     string input = xList[i].Substring(0, 4);
                     if (Regex.IsMatch(input, @"^\d+$") == true)
-                    {                        
-                            InsertPlayers(xList[i]);
+                    {
+                        InsertPlayers(xList[i]);
                     }
                 }
                 else
@@ -47,10 +45,8 @@ namespace WebScraperConsole
 
         private static void InsertPlayers(string row)
         {
-
             try
             {
-
                 using (var con = new SqlConnection("Persist Security Info=False;Integrated Security=true;Initial Catalog=NBA;server=(local)"))
                 {
                     con.Open();
@@ -75,10 +71,7 @@ namespace WebScraperConsole
                         cmd.Parameters.Add("@Period", SqlDbType.SmallInt);
                         cmd.Parameters.Add("@DateTimeStamp", SqlDbType.DateTime);
 
-
-
                         string[] columns = row.Split(';');
-
 
                         cmd.Parameters["@GID"].Value = columns[0];
                         cmd.Parameters["@ESPNID"].Value = columns[1];
@@ -108,7 +101,6 @@ namespace WebScraperConsole
                         cmd.Parameters["@DateTimeStamp"].Value = DateTime.Today;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
-
                     }
 
                     con.Close();
@@ -119,8 +111,5 @@ namespace WebScraperConsole
                 Console.WriteLine(ex.InnerException.ToString());
             }
         }
-        
     }
-
-    
 }

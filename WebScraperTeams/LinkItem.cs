@@ -12,10 +12,8 @@ public struct LinkItem
     }
 }
 
-static class LinkFinder
+internal static class LinkFinder
 {
-
-
     public static List<LinkItem> Find(string file)
     {
         List<LinkItem> list = new List<LinkItem>();
