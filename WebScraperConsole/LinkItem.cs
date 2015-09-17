@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-public struct LinkItem
+public class LinkItem
 {
     public string Href;
     public string Text;
@@ -12,10 +12,8 @@ public struct LinkItem
     }
 }
 
-static class LinkFinder
+internal static class LinkFinder
 {
-
-
     public static List<LinkItem> Find(string file, string tag)
     {
         List<LinkItem> list = new List<LinkItem>();

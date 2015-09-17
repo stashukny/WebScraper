@@ -1,54 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Net;
 
 namespace WebScraperTeams
 {
-    //struct Teams
-    //{
-    //    public string Team;
-    //    public float VsPos;
-    //    public float SeasonAvg;
-    //    public float Last4Avg;
-    //    public float Last10Avg;
-    //    public float Pts;
-    //    public float Reb;
-    //    public float Ast;
-    //    public float Stl;
-    //    public float Blk;
-    //    public float ThreePM;
-    //    public float FG;
-    //    public float FT;
-    //    public float TO;        
-
-    //}
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private const string path = "http://www.rotowire.com/daily/nba/defense-vspos.htm";
+
+        private static void Main(string[] args)
         {
-            string path = "http://www.rotowire.com/daily/nba/defense-vspos.htm";            
-            
             WebClient w = new WebClient();
             string s = w.DownloadString(path);
 
             List<string> xList = new List<string>();
 
             int counter = 0;
-            //string next;
-            //Teams t;
             string all = "";
 
             foreach (LinkItem i in LinkFinder.Find(s))
             {
-
                 counter += 1;
                 all = all + i + ";";
 
@@ -59,14 +33,10 @@ namespace WebScraperTeams
                     if (!String.IsNullOrEmpty(all))
                     {
                         Debug.WriteLine(all);
-                        //var result = all.ToString().Split(new[] { ';', '\n' });
-                        //xList = result.ToList<string>();                
                         xList.Add(all);
                         all = "";
-                    }                    
+                    }
                 }
-
-                
             }
 
             for (int i = xList.Count - 1; i >= 0; i--)
@@ -84,10 +54,8 @@ namespace WebScraperTeams
 
         private static void InsertTeams(string row)
         {
-
             try
             {
-
                 using (var con = new SqlConnection("Persist Security Info=False;Integrated Security=true;Initial Catalog=NBA;server=(local)"))
                 {
                     con.Open();
@@ -109,12 +77,8 @@ namespace WebScraperTeams
                         cmd.Parameters.Add("@FT", SqlDbType.Float);
                         cmd.Parameters.Add("@TO", SqlDbType.Float);
                         cmd.Parameters.Add("@DateTimeStamp", SqlDbType.DateTime);
-                     
-
-
 
                         string[] columns = row.Split(';');
-
 
                         cmd.Parameters["@Team"].Value = columns[0];
                         cmd.Parameters["@VsPos"].Value = columns[1];
@@ -133,7 +97,6 @@ namespace WebScraperTeams
 
                         cmd.Parameters["@DateTimeStamp"].Value = DateTime.Today;
                         int rowsAffected = cmd.ExecuteNonQuery();
-
                     }
 
                     con.Close();
@@ -143,6 +106,6 @@ namespace WebScraperTeams
             {
                 Console.WriteLine(ex.InnerException.ToString());
             }
-        }        
+        }
     }
 }
